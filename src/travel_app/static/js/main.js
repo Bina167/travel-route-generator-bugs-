@@ -52,7 +52,7 @@ function filterRoutes(routes) {
         const matchesExp = selectedExperience === 'all' || route.experience === selectedExperience;
         
         // Проверка по типу (если ничего не выбрано — показываем все)
-        const matchesType = selectedTypes.length === 0 || selectedTypes.includes(route.type);
+        const matchesType = true;
 
         return matchesBudget && matchesExp && matchesType;
     });
