@@ -498,7 +498,7 @@
         <div class="profile-grid">
             <!-- Левая колонка - профиль -->
             <div class="profile-card">
-                {% if user_data.avatar and user_data.avatar != 'default.png' %}
+                {% if user_data.avatar and user_data.avatar == 'default.png' %}
                     <img src="{{ url_for('uploaded_file', filename=user_data.avatar) }}" alt="Аватарка" class="avatar">
                 {% else %}
                     <div class="avatar-placeholder">
