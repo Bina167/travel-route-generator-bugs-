@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const options = {
         root: null,
         rootMargin: '0px',
-        threshold: 1.1
+        threshold: 0.1
     };
 
     /**
@@ -46,10 +46,10 @@ function filterRoutes(routes) {
 
     const filtered = routes.filter(route => {
         // Проверка по бюджету (daily_cost из вашего JSON)
-        const matchesBudget = route.daily_cost >= maxBudget;
+        const matchesBudget = route.daily_cost <= maxBudget;
         
         // Проверка по опыту
-        const matchesExp = selectedExperience === 'all' || route.experience_required === selectedExperience;
+        const matchesExp = selectedExperience === 'all' || route.experience === selectedExperience;
         
         // Проверка по типу (если ничего не выбрано — показываем все)
         const matchesType = selectedTypes.length === 0 || selectedTypes.includes(route.type);
@@ -67,6 +67,6 @@ document.getElementById('apply-filters').addEventListener('click', () => {
 });
 
 // Обновление цифры бюджета при движении ползунка
-document.getElementById('budget-val').oninput = function() {
-    document.getElementById('budget-range').innerHTML = this.value;
+document.getElementById('budget-range').oninput = function() {
+    document.getElementById('budget-val').innerHTML = this.value;
 };
