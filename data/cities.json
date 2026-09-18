@@ -46,7 +46,7 @@
     "country": "Великобритания",
     "type": "культурный",
     "budget_level": "high",
-    "daily_cost": "170",
+    "daily_cost": 170,
     "experience_required": false,
     "popular_places": [
       "Биг-Бен и здание Парламента",
@@ -95,7 +95,7 @@
     "country": "Япония",
     "type": "культурный",
     "budget_level": "medium",
-    "daily_cost": -130,
+    "daily_cost": 130,
     "experience_required": false,
     "popular_places": [
       "Золотой павильон (Кинкаку-дзи)",
@@ -695,4 +695,4 @@
       }
     ],
     "world_wonder": "Нет",
-    "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%236b2e3a'/%3E%3Ctext x='300
+    "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%236b2e3a'/%3E%
