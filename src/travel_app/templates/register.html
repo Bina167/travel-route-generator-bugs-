@@ -2,15 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация — TravelGen</title>
+    <title>Вход — TravelGen</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #db2777;
+            --secondary: #f472b6;
             --background: #0f172a;
-            --surface: rgba(139, 67, 91, 0.7);
+            --surface: rgba(139, 67, 91, 0.8);
             --text: #f8fafc;
-            --text-muted: #fbcfe8;
             --accent: #ec4899;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
@@ -32,21 +32,19 @@
             100% { background-position: 0% 50%; }
         }
         .card {
-            background: rgba(139, 67, 91, 0.65);
+            background: var(--surface);
             backdrop-filter: blur(16px);
             padding: 40px;
             border-radius: 20px;
             width: 360px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .card h2 {
             margin-bottom: 24px;
             font-weight: 700;
-            background: linear-gradient(135deg, #fff, #fbcfe8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #fff;
+            text-align: center;
         }
         .input-group {
             margin-bottom: 16px;
@@ -54,7 +52,7 @@
         .input-group label {
             font-size: 11px;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: #94a3b8;
             font-weight: 600;
             display: block;
             margin-bottom: 6px;
@@ -62,8 +60,8 @@
         .input-group input {
             width: 100%;
             padding: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 8px;
             color: #fff;
             box-sizing: border-box;
@@ -71,13 +69,13 @@
             font-family: inherit;
         }
         .input-group input:focus {
-            border-color: #f472b6;
-            box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.3);
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
         }
         .btn {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(135deg, #f472b6, #db2777);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: white;
             border: none;
             border-radius: 8px;
@@ -85,80 +83,70 @@
             cursor: pointer;
             margin-top: 8px;
             transition: all 0.25s;
-            box-shadow: 0 4px 12px rgba(219, 39, 119, 0.4);
         }
         .btn:hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         .error {
-            color: #ffb3b3;
-            font-size: 12px;
+            color: #ff4d4d;
+            font-size: 13px;
             margin-bottom: 16px;
             text-align: center;
-            background: rgba(239, 68, 68, 0.2);
-            padding: 8px;
+            background: rgba(255, 77, 77, 0.1);
+            padding: 10px;
             border-radius: 8px;
         }
         .footer-text {
             margin-top: 20px;
             font-size: 13px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
+            color: #94a3b8;
         }
         .footer-text a {
-            color: #fbcfe8;
+            color: #60a5fa;
             text-decoration: none;
             font-weight: 600;
         }
-        .footer-text a:hover {
+        .reset-password-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.85em;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .reset-password-link:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="card">
-        {% if step == 1 %}
-            <h2>Имя пользователя ✍️</h2>
-            {% if error %}
-                <div class="error">{{ error }}</div>
-            {% endif %}
-            <form action="/register" method="POST">
-                <div class="input-group">
-                    <label>Введите имя пользователя</label>
-                    <input type="text" name="username" required autocomplete="off">
-                </div>
-                <button type="submit" class="btn">Далее</button>
-            </form>
-        {% elif step == 2 %}
-            <h2>Регистрация (Шаг 2) 🔐</h2>
-            {% if error %}
-                <div class="error">{{ error }}</div>
-            {% endif %}
-            <form action="/register" method="POST">
-                <input type="hidden" name="username" value="{{ username }}">
-                
-                <div class="input-group">
-                    <label>Электронная почта</label>
-                    <input type="text" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label>Пароль</label>
-                    <input type="password" name="password" required>
-                </div>
-                <div class="input-group">
-                    <label>Повторите пароль</label>
-                    <input type="password" name="confirm_password" required>
-                </div>
-                <button type="submit" class="btn">Зарегистрироваться</button>
-            </form>
+        <h2>Вход 🔑</h2>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
         {% endif %}
-        
-        {% if step == 1 %}
-            <div class="footer-text">
-                Уже есть аккаунт? <a href="/login">Войти</a>
+
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label>Логин или Email</label>
+                <input type="text" name="username" required autocomplete="username">
             </div>
-        {% endif %}
+            <div class="input-group">
+                <label>Пароль</label>
+                <input type="password" name="password" required autocomplete="current-password">
+            </div>
+            
+            <button type="button" class="btn">Войти</button>
+            
+            <a href="{{ url_for('reset_password') }}" class="reset-password-link">Забыли пароль?</a>
+        </form>
+
+        <div class="footer-text">
+            Нет аккаунта? <a href="/register">Регистрация</a>
+        </div>
     </div>
 </body>
 </html>
